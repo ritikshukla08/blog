@@ -1,0 +1,9 @@
+.search {
+  padding: 8px 12px 8px 40px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+
+.search::placeholder {
+  color: #9da2a8;
+}

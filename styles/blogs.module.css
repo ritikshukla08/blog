@@ -1,0 +1,30 @@
+.pagination {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.pagination button,
+.span {
+  padding: 0px 10px;
+  line-height: 30px;
+  font-size: 15px;
+  display: inline-block;
+  background-color: #fff;
+  color: #5298e9;
+  margin: 0 5px;
+  border-radius: 5px;
+  border: 1px solid #5298e9;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.pagination button:disabled {
+  border-color: #bcbcbc;
+  background-color: #f5f5f5;
+  color: #bcbcbc;
+}
+
+.pagination .active {
+  background: #5298e9;
+  color: #fff;
+}

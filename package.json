@@ -6,11 +6,22 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "next build && next export"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@mantine/core": "^5.8.4",
+    "@mantine/ds": "^5.8.4",
+    "@mantine/hooks": "^5.8.4",
+    "@reduxjs/toolkit": "^1.9.1",
+    "@tabler/icons": "^1.114.0",
+    "axios": "^1.2.1",
     "next": "13.0.5",
+    "next-redux-wrapper": "^8.0.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-redux": "^8.0.5",
+    "redux": "^4.2.0"
   }
 }

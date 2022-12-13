@@ -1,0 +1,62 @@
+.colsWrapper {
+  max-width: 976px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 50px 16px;
+}
+
+.content {
+  max-width: 620px;
+}
+.heading {
+  font-size: 35px;
+}
+
+.content .date {
+  padding-top: 10px;
+  font-weight: 700;
+  color: #696969;
+}
+
+.user {
+  display: flex;
+  margin: 20px 0;
+  padding-left: 10px;
+  border-left: 5px solid #5298e9;
+}
+
+.user img {
+  border-radius: 30px;
+  margin-right: 10px;
+}
+
+.user .name {
+  display: block;
+  color: #5298e9;
+  font-weight: 600;
+}
+
+.paragraph {
+  font-size: 18px;
+  padding-top: 30px;
+}
+
+.paragraph a {
+  color: #5298e9;
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.paragraph a:hover {
+  color: #003e85;
+}
+
+.paragraph code {
+  background-color: rgba(255, 229, 100, 0.2);
+  color: #1a1a1a;
+  padding: 0 3px;
+}
+
+.sidebar {
+  padding: 0 20px;
+}
