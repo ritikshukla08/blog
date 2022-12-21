@@ -3,6 +3,9 @@ import { IconSearch } from "@tabler/icons";
 import { MantineLogo } from "@mantine/ds";
 import style from "../styles/HeaderSearch.module.css";
 import Link from "next/link";
+import { useEffect } from "react";
+import { useState } from "react";
+import Image from "next/image";
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -51,8 +54,48 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
+let init = true;
 export default function HeaderSearch() {
   const { classes } = useStyles();
+  const [showDropDown, setShowDropDown] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+  const [dataSrch, setDataSrch] = useState([]);
+
+  useEffect(() => {
+    if (init) {
+      init = false;
+      return;
+    }
+
+    const fetchData = async () => {
+      setLoading(true);
+      const response = await fetch(
+        `http://tss.local/wp-json/wp/v2/posts?search=${searchValue}&_embed`
+      );
+      const data = await response.json();
+      setDataSrch(data);
+      setLoading(false);
+    };
+
+    const mytimeout = setTimeout(fetchData, 500);
+
+    return () => {
+      clearTimeout(mytimeout);
+    };
+  }, [searchValue]);
+
+  const searchHandler = (e) => {
+    setSearchValue(e.target.value);
+  };
+
+  const onFocusHandler = () => {
+    setShowDropDown(true);
+  };
+
+  const onBlurHandler = () => {
+    setShowDropDown(false);
+  };
 
   const links = [
     {
@@ -94,23 +137,49 @@ export default function HeaderSearch() {
         </Group>
 
         <Group>
-          <Group ml={50} spacing={5} className={classes.links}>
-            {items}
-          </Group>
-          <Autocomplete
-            className={classes.search}
-            placeholder="Search"
-            icon={<IconSearch size={16} stroke={1.5} />}
-            data={[
-              "React",
-              "Angular",
-              "Vue",
-              "Next.js",
-              "Riot.js",
-              "Svelte",
-              "Blitz.js",
-            ]}
-          />
+          <div className={style.searchBar}>
+            <div className={style.searchIcon}>
+              <IconSearch className={style.icon} size={16} stroke={1.5} />
+            </div>
+            <input
+              placeholder="Search"
+              className={style.search}
+              value={searchValue}
+              onFocus={onFocusHandler}
+              // onBlur={onBlurHandler}
+              onChange={searchHandler}
+              type="text"
+            />
+            {showDropDown && (
+              <ul className={style.suggestions}>
+                {loading && <h4>Loading...</h4>}
+                {!loading &&
+                  dataSrch?.map((blog, i) => {
+                    {
+                      console.log(blog[0]);
+                    }
+                    return (
+                      <Link key={i} href={`/${blog.slug}`}>
+                        <li className={style.searchList}>
+                          <img
+                            src={
+                              blog?._embedded["wp:featuredmedia"][0]?.source_url
+                            }
+                            alt={blog.title.rendered}
+                            width={66}
+                            height={33}
+                          />
+                          <p>{blog.title.rendered}</p>
+                        </li>
+                      </Link>
+                    );
+                  })}
+              </ul>
+            )}
+          </div>
+        </Group>
+        <Group ml={50} spacing={5} className={classes.links}>
+          {items}
         </Group>
       </div>
     </Header>

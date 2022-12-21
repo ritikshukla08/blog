@@ -57,6 +57,7 @@ export function ArticlesCardsGrid({ data, total, loading, cur }) {
     <Container py="xl">
       <h2 className={classes.blogTitle}>Blogs</h2>
       <SimpleGrid cols={3} breakpoints={[{ maxWidth: "sm", cols: 1 }]}>
+        {loading && <h2>loading...</h2>}
         {!loading &&
           data?.map((article) => (
             <Card
@@ -92,7 +93,7 @@ export function ArticlesCardsGrid({ data, total, loading, cur }) {
           ))}
       </SimpleGrid>
       <div className={style.pagination}>
-        <Link href={`/?page=${curPage - 1}`}>
+        <Link href={`/?page=${cur - 1}`}>
           <button
             className={style.span}
             onClick={prevHandler}
@@ -113,7 +114,7 @@ export function ArticlesCardsGrid({ data, total, loading, cur }) {
             </button>
           </Link>
         ))}
-        <Link href={`/?page=${curPage + 1}`}>
+        <Link href={`/?page=${cur + 1}`}>
           <button
             className={style.span}
             onClick={nextHandler}

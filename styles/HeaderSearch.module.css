@@ -1,9 +1,72 @@
+.searchBar {
+  position: relative;
+}
+
+.searchIcon {
+  position: absolute;
+  /* margin: 8px 10px; */
+  color: #495057;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  bottom: 0;
+  top: 0;
+  left: 0;
+}
+
 .search {
-  padding: 8px 12px 8px 40px;
-  border: 1px solid #ced4da;
+  padding: 8px 12px 8px 34px;
+  border: 1px solid #495057;
   border-radius: 5px;
+  width: 500px;
+  outline: none;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica,
+    Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
 }
 
 .search::placeholder {
-  color: #9da2a8;
+  color: #adb5bd;
+}
+
+.search:focus {
+  border-color: #228be6;
+}
+
+.search:focus .searchIcon .icon {
+  color: #228be6;
+}
+
+.searchBar .suggestions {
+  position: absolute;
+  background-color: #fff;
+  right: 0;
+  left: 0;
+  top: 30px;
+  z-index: 2;
+  list-style: none;
+  padding: 10px;
+  max-height: 465px;
+  overflow-x: auto;
+}
+
+.suggestions h4 {
+  text-align: center;
+}
+
+.searchList {
+  display: flex;
+  padding: 15px 0;
+  border-bottom: 1px solid #ced4da;
+}
+
+.searchBar .suggestions li:last-child {
+  border: none;
+}
+
+.searchBar .suggestions li p {
+  margin: 0;
+  padding-left: 15px;
+  font-size: 15px;
+  line-height: 18px;
 }
